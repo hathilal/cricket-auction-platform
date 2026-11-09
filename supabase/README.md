@@ -14,6 +14,8 @@ Open **SQL Editor → New query**, paste the complete contents of:
 
 Run it once. It creates the room, franchise, member, lot and bid tables; enables RLS; and installs the server-side RPCs used by the client.
 
+After the foundation migration, apply the lot-pass migration from `supabase/migrations/202611090002_lot_pass_withdrawal.sql` in a **new SQL Editor query**. This adds per-franchise pass state for each active player, prevents a passed franchise from bidding again on that lot, and publishes pass events to Realtime. It is a separate migration because the foundation migration may already have been applied.
+
 ## 3. Configure authentication
 
 In **Authentication → Providers**, enable Email (magic link / OTP).
@@ -47,7 +49,7 @@ Paste them into the connection panel. The browser stores these two public client
 - The browser never sends an authoritative purse balance or chooses the winning franchise.
 - Room reads are protected by RLS. Sensitive mutations are exposed through authenticated RPCs, not direct table writes.
 - Realtime currently uses Postgres Changes for a straightforward first connected beta. For larger rooms and higher fan-out, move event delivery to private Broadcast channels with explicit Realtime Authorization policies.
-- Host controls currently support calling a player and closing the lot. Pause/resume, host transfer, invitations, chat, reconnect recovery UX, rate limits and automated concurrency/RLS tests remain future work.
+- Host controls currently support calling a player and closing the lot. Franchise owners can pass on an active player; passing is final for that franchise on that lot only. Pause/resume, host transfer, invitations, chat, reconnect recovery UX, rate limits and automated concurrency/RLS tests remain future work.
 - This is not a production-hardened paid auction service. Do not use it for real-money transactions or high-stakes events before security review, load testing and operational monitoring.
 
 ## Troubleshooting
