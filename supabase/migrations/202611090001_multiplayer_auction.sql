@@ -231,6 +231,7 @@ begin
       'franchises',(select coalesce(jsonb_agg(jsonb_build_object('id',f.id,'name',f.franchise_name,'seat_no',f.seat_no,'taken',f.owner_id is not null) order by f.seat_no),'[]'::jsonb) from public.auction_franchises f where f.room_id=v_room.id));
   end if;
   return jsonb_build_object('room_id',v_room.id,'room_name',v_room.room_name,'room_code',v_room.room_code,'status',v_room.status,
+    'bid_increment',v_room.bid_increment,'squad_limit',v_room.squad_limit,'starting_purse',v_room.starting_purse,
     'is_host',v_room.host_id=auth.uid(),
     'franchises',(select coalesce(jsonb_agg(jsonb_build_object('id',f.id,'name',f.franchise_name,'seat_no',f.seat_no,'taken',f.owner_id is not null,'purse',f.purse_remaining,'squad_count',f.squad_count) order by f.seat_no),'[]'::jsonb) from public.auction_franchises f where f.room_id=v_room.id),
     'members',(select coalesce(jsonb_agg(jsonb_build_object('display_name',m.display_name,'role',m.member_role,'franchise_id',m.franchise_id)),'[]'::jsonb) from public.auction_members m where m.room_id=v_room.id),
