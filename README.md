@@ -17,7 +17,13 @@ The initial UI prototype is intentionally dependency-light and uses semantic HTM
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/ROADMAP.md](docs/ROADMAP.md), and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Interactive demo\n\nOpen [create-room.html](./create-room.html) to configure a local demo auction (room name, starting purse, squad size and bid increment), or open [auction-room.html](./auction-room.html) with default settings to try a local auction simulation with sample players, bid increments, purse tracking, squad purchases, activity history and reset. Demo state exists only in the browser and is not shared or saved.\n\n## Run locally
+## Interactive demo\n\nOpen [create-room.html](./create-room.html) to configure a local demo auction (room name, starting purse, squad size and bid increment), or open [auction-room.html](./auction-room.html) with default settings to try a local auction simulation with sample players, bid increments, purse tracking, squad purchases, activity history and reset. Demo state exists only in the browser and is not shared or saved.\n\n## Multiplayer beta
+
+The connected auction foundation is in [multiplayer-auction.html](./multiplayer-auction.html). It supports email magic-link sign-in, private room creation, franchise seat claiming, host lot controls and server-validated bids. It requires a Supabase project and the SQL migration in [supabase/README.md](./supabase/README.md). Until that external project is configured, this page cannot connect to a live room.
+
+The original [auction-floor.html](./auction-floor.html) remains a browser-only visual simulator.
+
+## Run locally
 
 This first milestone is a static prototype:
 
