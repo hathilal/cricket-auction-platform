@@ -2,7 +2,7 @@
 
 A premium, responsive cricket auction experience for web, Android and iOS.
 
-> Status: foundation / UI prototype. Live bidding, authentication and persistence are planned milestones, not implemented yet.
+> Status: responsive UI prototype plus a browser-only auction room simulator. Authentication, multiplayer bidding, server-side validation and persistence are not implemented yet.
 
 ## Product direction
 
@@ -17,7 +17,7 @@ The initial UI prototype is intentionally dependency-light and uses semantic HTM
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/ROADMAP.md](docs/ROADMAP.md), and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Run locally
+## Interactive demo\n\nOpen [auction-room.html](./auction-room.html) to try a local auction simulation with sample players, bid increments, purse tracking, squad purchases, activity history and reset. Demo state exists only in the browser and is not shared or saved.\n\n## Run locally
 
 This first milestone is a static prototype:
 
