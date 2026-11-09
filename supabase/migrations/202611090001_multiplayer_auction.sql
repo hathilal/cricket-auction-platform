@@ -144,6 +144,7 @@ returns jsonb language plpgsql security definer set search_path = '' as $$
 declare v_room public.auction_rooms; v_franchise public.auction_franchises;
 begin
   if auth.uid() is null then raise exception 'Sign in before joining a room'; end if;
+  if length(trim(p_display_name)) not between 2 and 40 then raise exception 'Display name must be 2–40 characters'; end if;
   select * into v_room from public.auction_rooms where room_code=upper(trim(p_room_code));
   if not found then raise exception 'Room code not found'; end if;
   if v_room.status='completed' then raise exception 'This room has finished'; end if;
