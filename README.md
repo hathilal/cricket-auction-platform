@@ -17,7 +17,7 @@ The initial UI prototype is intentionally dependency-light and uses semantic HTM
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/ROADMAP.md](docs/ROADMAP.md), and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Interactive demo\n\nOpen [auction-room.html](./auction-room.html) to try a local auction simulation with sample players, bid increments, purse tracking, squad purchases, activity history and reset. Demo state exists only in the browser and is not shared or saved.\n\n## Run locally
+## Interactive demo\n\nOpen [create-room.html](./create-room.html) to configure a local demo auction (room name, starting purse, squad size and bid increment), or open [auction-room.html](./auction-room.html) with default settings to try a local auction simulation with sample players, bid increments, purse tracking, squad purchases, activity history and reset. Demo state exists only in the browser and is not shared or saved.\n\n## Run locally
 
 This first milestone is a static prototype:
 
