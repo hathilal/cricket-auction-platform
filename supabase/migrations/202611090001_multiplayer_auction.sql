@@ -123,7 +123,7 @@ begin
   if coalesce(array_length(p_franchise_names,1),0) not between 2 and 16 then raise exception 'Choose between 2 and 16 franchises'; end if;
   if p_starting_purse <= 0 or p_bid_increment <= 0 or p_squad_limit not between 1 and 30 then raise exception 'Invalid room rules'; end if;
   loop
-    v_code := upper(substr(encode(extensions.gen_random_bytes(6),'hex'),1,6));
+    v_code := upper(substr(replace(gen_random_uuid()::text,'-',''),1,6));
     exit when not exists(select 1 from public.auction_rooms where room_code=v_code);
   end loop;
   insert into public.auction_rooms(room_code,room_name,host_id,starting_purse,bid_increment,squad_limit)
