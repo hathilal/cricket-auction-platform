@@ -1,0 +1,182 @@
+/* BOUNDARY responsive system — portrait, landscape and touch layouts */
+:root{--mobile-gutter:clamp(14px,3.6vw,28px)}
+html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;min-width:320px;overflow-x:hidden}
+img,video,canvas,svg,iframe{max-width:100%}
+button,a,input,select,textarea{touch-action:manipulation}
+button,.btn,.button{min-height:40px}
+input,select,textarea{max-width:100%;min-width:0}
+.grid>*{min-width:0}
+.table-wrap,.table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+pre{max-width:100%;overflow:auto}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line,#34445b);color:inherit;border-radius:8px;padding:8px 11px;min-width:42px;min-height:42px}
+@media(max-width:1100px){
+  .shell{width:calc(100% - 40px)}
+  .main-nav{gap:16px}
+  .site-header{padding-inline:22px}
+  .app{grid-template-columns:220px minmax(0,1fr)}
+  .content{padding-inline:24px}
+  .layout{grid-template-columns:minmax(0,1fr) 290px}
+  .floor{min-height:590px}
+}
+@media(max-width:760px){
+  .menu-toggle{display:inline-grid;place-items:center}
+  .site-header{height:66px;padding-inline:15px;gap:10px}
+  .site-header .brand{font-size:12px;letter-spacing:.12em}
+  .site-header .brand-mark{width:29px;height:29px}
+  .main-nav{display:none;position:absolute;left:10px;right:10px;top:calc(100% + 7px);height:auto;max-height:calc(100svh - 84px);overflow:auto;padding:9px;background:#0d1728;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 50px #000a;flex-direction:column;align-items:stretch;gap:2px}
+  .main-nav.open{display:flex}
+  .main-nav a{height:auto;min-height:43px;padding:0 12px;justify-content:flex-start;border-radius:7px}
+  .main-nav a.active:after{display:none}
+  .header-actions{gap:8px;margin:0 0 0 auto}
+  .header-actions .button{font-size:10px}
+  .status{display:none}
+  .shell{width:calc(100% - 30px)}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0;padding-block:42px 35px;gap:28px}
+  .hero h1{font-size:clamp(46px,13vw,76px)}
+  .hero-art{height:clamp(220px,65vw,330px);min-width:0}
+  .hero-art .orbit-a{width:min(430px,110vw)}
+  .hero-art .orbit-b{width:min(330px,88vw)}
+  .hero-actions{gap:9px}
+  .hero-actions .button{flex:1 1 145px}
+  .hero-proof{margin-top:28px}
+  .ticker{padding-block:12px}
+  .section{padding-block:48px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:12px}
+  .auction-grid,.feature-layout{grid-template-columns:minmax(0,1fr)}
+  .feature-layout{gap:25px}
+  .feature-band{padding:48px 0}
+  .site-footer{padding-block:22px;gap:12px;flex-wrap:wrap}
+  .site-footer>span:nth-child(2){order:3;width:100%}
+  .app{display:block;min-height:100svh}
+  .sidebar{position:fixed;inset:0 auto 0 0;width:min(290px,86vw);height:100dvh;max-height:100dvh;overflow-y:auto;overscroll-behavior:contain;left:-110%;transition:left .22s ease;box-shadow:20px 0 60px #0009;padding:20px 16px}
+  .sidebar.open{left:0}
+  .topbar{height:60px;padding:0 13px;gap:10px}
+  .topbar>div:first-child{min-width:0}
+  .crumb{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-actions{gap:8px}
+  .avatar{width:30px;height:30px;flex:0 0 30px}
+  .online{display:none}
+  .mobile-menu{display:inline-grid;place-items:center;min-width:40px;min-height:40px;padding:6px}
+  .content{padding:22px 14px 34px}
+  .page-head{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:18px}
+  .page-head h1{font-size:clamp(27px,7vw,38px)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:15px 0}
+  .stat-card{padding:13px}
+  .stat-top{font-size:8px}
+  .stat-value{font-size:clamp(18px,5vw,24px);overflow-wrap:anywhere}
+  .stat-note{font-size:9px;line-height:1.5}
+  .split{grid-template-columns:minmax(0,1fr)}
+  .grid{gap:11px}
+  .panel{padding:14px}
+  .panel-head{align-items:flex-start;flex-wrap:wrap;gap:8px}
+  .panel-head h2{font-size:13px}
+  .panel-head p{line-height:1.5}
+  .hero-panel{padding:20px}
+  .hero-panel h2{font-size:23px}
+  .table-wrap{margin-inline:-4px}
+  table{min-width:560px}
+  .activity-row{gap:9px;font-size:10px}
+  .activity-row small{line-height:1.5}
+  .franchise-card{padding:14px}
+  .player-tools{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .player-tools input:first-child{grid-column:1/-1}
+  .player-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .player-card{padding:12px}
+  .pc-person{gap:9px}
+  .pc-avatar{width:58px;height:72px;flex-basis:58px}
+  .pc-person h3{font-size:12px}
+  .pc-person p{font-size:9px}
+  .pc-foot{gap:8px}
+  .pc-foot span{font-size:7px}
+  .detail-stats,.modal-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .modal-card{padding:18px;max-height:90dvh;overflow:auto}
+  .scout-banner{align-items:flex-start;flex-direction:column}
+  .scout-banner span{white-space:normal}
+  .boundary-3d{padding:14px;margin:16px 0}
+  .stadium-3d{height:190px}
+  .squad-pitch{height:220px}
+  .analytics-3d-grid{gap:5px;padding-inline:6px}
+  .analytics-3d-bar:before{width:8px}
+  .analytics-3d-bar span{font-size:7px}
+  .workspace-nav{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+  .workspace-nav a{white-space:nowrap}
+  .top{padding-inline:15px}
+  .wrap{width:calc(100% - 28px);margin:24px auto 40px}
+  .heading{align-items:flex-start;flex-direction:column}
+  .layout{grid-template-columns:minmax(0,1fr);gap:12px}
+  .floor{min-height:560px}
+  .lot-card{width:min(88%,360px);min-width:0;padding:16px 13px}
+  .seat-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .live-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .control{min-width:0}
+  .feed{max-height:260px;overflow:auto}
+  .sold-card{width:min(92vw,560px);padding:24px 16px}
+  .sold-word{font-size:clamp(52px,17vw,100px)}
+  .sold-player{font-size:clamp(19px,6vw,30px)}
+  .reveal-stage{width:min(94vw,900px);max-height:90dvh;overflow:auto}
+  .reveal-portrait{max-width:42vw}
+  .result{max-width:92vw}
+  .result h2{font-size:clamp(38px,12vw,70px)}
+  .result-media{max-height:38vh}
+  .custom-bid{flex-wrap:wrap}
+  .custom-bid input{flex:1 1 120px;min-width:0}
+  .controls .btn{flex:1 1 auto}
+}
+@media(max-width:420px){
+  .header-actions .button{padding:9px 10px}
+  .site-header .brand{gap:7px;font-size:10px}
+  .hero h1{font-size:clamp(43px,12.5vw,58px)}
+  .hero-actions .button{flex-basis:100%}
+  .player-grid{grid-template-columns:minmax(0,1fr)}
+  .pc-avatar{width:68px;height:82px;flex-basis:68px}
+  .player-tools{grid-template-columns:minmax(0,1fr)}
+  .player-tools input:first-child{grid-column:auto}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .seat-list,.live-grid{grid-template-columns:minmax(0,1fr)}
+  .two{grid-template-columns:minmax(0,1fr)}
+  .lot-card{width:92%;padding:13px 10px}
+  .player-avatar{width:86px;height:86px}
+  .floor{min-height:520px}
+  .modal-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-height:520px) and (orientation:landscape){
+  .site-header{height:54px}
+  .main-nav{max-height:calc(100dvh - 65px)}
+  .hero{min-height:0;padding-block:24px;grid-template-columns:minmax(0,1fr) minmax(220px,.8fr);gap:20px}
+  .hero h1{font-size:clamp(38px,8vh,58px);margin:12px 0}
+  .hero-art{height:min(62vh,260px)}
+  .hero-proof{margin-top:15px}
+  .section{padding-block:30px}
+  .topbar{height:52px}
+  .sidebar{padding-top:12px}
+  .sidebar .brand{padding-bottom:10px}
+  .sidebar .nav-label{padding-top:10px}
+  .sidebar .nav-link{padding-block:8px}
+  .content{padding-top:16px;padding-bottom:24px}
+  .page-head{margin-bottom:13px}
+  .layout{grid-template-columns:minmax(0,1.3fr) minmax(220px,.7fr)}
+  .floor{min-height:min(72vh,520px)}
+  .lot-card{width:min(54%,330px);padding:10px}
+  .player-avatar{width:68px;height:68px;margin:6px auto}
+  .lot-card h2{font-size:18px}
+  .current-label{margin-top:8px}
+  .timer{margin-top:7px}
+  .reveal-stage{max-height:94dvh}
+  .reveal-portrait{max-height:76vh}
+  .sold-card{max-height:94dvh;overflow:auto}
+  .boundary-3d{margin-block:12px;padding:12px}
+  .stadium-3d{height:150px}
+  .squad-pitch{height:165px}
+  .analytics-3d-grid{height:160px}
+}
+@media(orientation:landscape) and (max-height:420px){
+  .site-header .main-nav.open{max-height:calc(100dvh - 60px)}
+  .hero-art{height:52vh}
+  .floor{min-height:68vh}
+  .lot-card{max-height:65vh;overflow:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
