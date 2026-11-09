@@ -7,7 +7,7 @@
 - [ ] Port prototype into Next.js/TypeScript workspace.
 - [ ] Add automated lint, typecheck and component test workflows.
 
-## Milestone 1 — Product shell
+## Prototype extension — Local auction simulator\n- [x] Interactive player nomination and bid controls.\n- [x] Purse and squad tracking with purchase validation.\n- [x] Activity history and demo reset.\n- [ ] Replace local simulation with authenticated, server-authoritative multiplayer auctions.\n\n## Milestone 1 — Product shell
 - [ ] Next.js app shell, routing and responsive navigation.
 - [ ] Shared design tokens and accessible component primitives.
 - [ ] Authentication and profile onboarding.
