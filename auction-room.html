@@ -30,7 +30,12 @@
 </div>
 </main><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-const params=new URLSearchParams(location.search);\nconst safeName=(params.get("name")||"Demo auction room").trim().slice(0,40);\nconst parsedPurse=Number(params.get("purse")),startingPurse=Number.isFinite(parsedPurse)&&parsedPurse>=10&&parsedPurse<=500&&parsedPurse%5===0?parsedPurse:100;\nconst parsedSquad=Number(params.get("squad")),squadLimit=Number.isInteger(parsedSquad)&&parsedSquad>=1&&parsedSquad<=5?parsedSquad:5;\nconst parsedIncrement=Number(params.get("increment")),bidStep=[.25,.5,1].includes(parsedIncrement)?parsedIncrement:.25;\ndocument.getElementById("roomTitle").textContent=safeName||"Demo auction room";\nconst players=[
+const params=new URLSearchParams(location.search);
+const safeName=(params.get("name")||"Demo auction room").trim().slice(0,40);
+const parsedPurse=Number(params.get("purse")),startingPurse=Number.isFinite(parsedPurse)&&parsedPurse>=10&&parsedPurse<=500&&parsedPurse%5===0?parsedPurse:100;
+const parsedSquad=Number(params.get("squad")),squadLimit=Number.isInteger(parsedSquad)&&parsedSquad>=1&&parsedSquad<=5?parsedSquad:5;
+const parsedIncrement=Number(params.get("increment")),bidStep=[.25,.5,1].includes(parsedIncrement)?parsedIncrement:.25;\ndocument.getElementById("roomTitle").textContent=safeName||"Demo auction room";
+const players=[
 {name:"Virat Kohli",initials:"VK",role:"TOP-ORDER BATTER",country:"India · Right-hand bat",base:2,age:37,style:"RIGHT-HAND",runs:"8,661",strike:"132.5",rating:94,tags:["BATTER","EXPERIENCED"]},
 {name:"Jasprit Bumrah",initials:"JB",role:"FAST BOWLER",country:"India · Right-arm fast",base:1.5,age:32,style:"RIGHT-ARM",runs:"165",strike:"87.3",rating:97,tags:["BOWLER","DEATH OVERS"]},
 {name:"Rashid Khan",initials:"RK",role:"SPIN ALL-ROUNDER",country:"Afghanistan · Leg spin",base:1.5,age:28,style:"LEG SPIN",runs:"1,280",strike:"152.4",rating:95,tags:["ALL-ROUNDER","SPIN"]},
