@@ -3,6 +3,8 @@
 
 create extension if not exists pgcrypto;
 
+create schema if not exists private;
+
 create table if not exists public.auction_rooms (
   id uuid primary key default gen_random_uuid(),
   room_code text not null unique,
@@ -74,6 +76,13 @@ create table if not exists public.auction_bids (
 create index if not exists auction_members_user_room_idx on public.auction_members(user_id, room_id);
 create index if not exists auction_bids_lot_created_idx on public.auction_bids(lot_id, created_at desc);
 
+create or replace function private.is_room_member(p_room_id uuid)
+returns boolean language sql stable security definer set search_path = ''
+as $ select exists(select 1 from public.auction_members m where m.room_id=p_room_id and m.user_id=(select auth.uid())) $;
+revoke execute on function private.is_room_member(uuid) from public, anon;
+grant usage on schema private to authenticated;
+grant execute on function private.is_room_member(uuid) to authenticated;
+
 alter table public.auction_rooms enable row level security;
 alter table public.auction_franchises enable row level security;
 alter table public.auction_members enable row level security;
@@ -85,23 +94,23 @@ grant select on public.auction_rooms, public.auction_franchises, public.auction_
 
 drop policy if exists "room members read rooms" on public.auction_rooms;
 create policy "room members read rooms" on public.auction_rooms for select to authenticated
-using (exists(select 1 from public.auction_members m where m.room_id=id and m.user_id=(select auth.uid())));
+using (private.is_room_member(id));
 
 drop policy if exists "room members read franchises" on public.auction_franchises;
 create policy "room members read franchises" on public.auction_franchises for select to authenticated
-using (exists(select 1 from public.auction_members m where m.room_id=room_id and m.user_id=(select auth.uid())));
+using (private.is_room_member(auction_franchises.room_id));
 
 drop policy if exists "room members read members" on public.auction_members;
 create policy "room members read members" on public.auction_members for select to authenticated
-using (exists(select 1 from public.auction_members mine where mine.room_id=auction_members.room_id and mine.user_id=(select auth.uid())));
+using (private.is_room_member(auction_members.room_id));
 
 drop policy if exists "room members read lots" on public.auction_lots;
 create policy "room members read lots" on public.auction_lots for select to authenticated
-using (exists(select 1 from public.auction_members m where m.room_id=auction_lots.room_id and m.user_id=(select auth.uid())));
+using (private.is_room_member(auction_lots.room_id));
 
 drop policy if exists "room members read bids" on public.auction_bids;
 create policy "room members read bids" on public.auction_bids for select to authenticated
-using (exists(select 1 from public.auction_members m where m.room_id=auction_bids.room_id and m.user_id=(select auth.uid())));
+using (private.is_room_member(auction_bids.room_id));
 
 create or replace function public.create_auction_room(
   p_room_name text, p_franchise_names text[], p_starting_purse numeric,
