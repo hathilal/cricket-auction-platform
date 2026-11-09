@@ -78,14 +78,7 @@ create index if not exists auction_bids_lot_created_idx on public.auction_bids(l
 
 create or replace function private.is_room_member(p_room_id uuid)
 returns boolean language sql stable security definer set search_path = ''
-as $
-  select exists (
-    select 1
-    from public.auction_members m
-    where m.room_id = p_room_id
-      and m.user_id = (select auth.uid())
-  );
-$;
+as 'select exists (select 1 from public.auction_members m where m.room_id = p_room_id and m.user_id = (select auth.uid()))';
 revoke execute on function private.is_room_member(uuid) from public, anon;
 grant usage on schema private to authenticated;
 grant execute on function private.is_room_member(uuid) to authenticated;
